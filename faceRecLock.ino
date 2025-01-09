@@ -1,32 +1,7 @@
-/**********************************************************************
-  Filename    : Camera Web Serrver
-  Description : ESP32 connects to WiFi and prints a url through a serial port.
-                Users visit the site to view the image data ESP32 camera.
-  Auther      : www.freenove.com
-  Modification: 2024/06/20
-**********************************************************************/
 #include "esp_camera.h"
 #include <WiFi.h>
 
-// ===================
-// Select camera model
-// ===================
 #define CAMERA_MODEL_WROVER_KIT // Has PSRAM
-//#define CAMERA_MODEL_ESP_EYE // Has PSRAM
-//#define CAMERA_MODEL_ESP32S3_EYE // Has PSRAM
-//#define CAMERA_MODEL_M5STACK_PSRAM // Has PSRAM
-//#define CAMERA_MODEL_M5STACK_V2_PSRAM // M5Camera version B Has PSRAM
-//#define CAMERA_MODEL_M5STACK_WIDE // Has PSRAM
-//#define CAMERA_MODEL_M5STACK_ESP32CAM // No PSRAM
-//#define CAMERA_MODEL_M5STACK_UNITCAM // No PSRAM
-//#define CAMERA_MODEL_AI_THINKER // Has PSRAM
-//#define CAMERA_MODEL_TTGO_T_JOURNAL // No PSRAM
-// ** Espressif Internal Boards **
-//#define CAMERA_MODEL_ESP32_CAM_BOARD
-//#define CAMERA_MODEL_ESP32S2_CAM_BOARD
-//#define CAMERA_MODEL_ESP32S3_CAM_LCD
-
-
 #include "camera_pins.h"
 
 const char *ssid_Router     = "ORBI7";  //input your wifi name
@@ -98,7 +73,7 @@ void camera_init() {
   config.xclk_freq_hz = 20000000;
   config.frame_size = FRAMESIZE_QVGA;
   config.pixel_format = PIXFORMAT_JPEG; // for streaming
-  //config.pixel_format = PIXFORMAT_RGB565; // for face detection/recognition
+  config.pixel_format = PIXFORMAT_RGB565; // for face detection/recognition
   config.grab_mode = CAMERA_GRAB_WHEN_EMPTY;
   config.fb_location = CAMERA_FB_IN_PSRAM;
   config.jpeg_quality = 10;
